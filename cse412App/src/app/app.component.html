@@ -16,11 +16,17 @@
   flex: 50%;
 }
 
-form, h2, h1 {
+form, h2, h1{
   text-align: center;
 }
 .form-group,label {
     padding: 12px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 </style>
@@ -55,6 +61,30 @@ form, h2, h1 {
 
         <pre>{{playerForm.value.year}}</pre>
       </form>
+
+      <div class="container p-5">
+ 
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Player Name</th>
+              <th scope="col">Season</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of players">
+              
+              <td>{{user.nflid}}</td>
+              <td>{{user.displayname}}</td>
+              <td>{{user.season}}</td>
+            </tr>
+          
+          </tbody>
+        </table>
+        
+        </div>
+
     </div>
 
     <div class="column">

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@an
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,19 @@ import { CommonModule } from '@angular/common';
 
 export class AppComponent {
 
+  players: any;
+
   constructor(
     private formBuilder: FormBuilder,
-  ) {}
+    public http:HttpClient
+  ){
+    //Rest API Calling
+    this.http.get('http://localhost:5000/users').subscribe(data => {
+      this.players = data;
+      console.log(this.players);
+
+    });
+  }
 
 
   title = 'cse412App';
