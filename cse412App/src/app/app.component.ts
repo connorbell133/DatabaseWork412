@@ -44,6 +44,7 @@ export class AppComponent implements OnInit{
   teamNickName = '';
   teamSeasonYear = "--Select Season Year--";
 
+
   constructor(
     private service: Service
   ){}
@@ -172,7 +173,7 @@ export class AppComponent implements OnInit{
       });
     }
 
-    else if(this.teamMemsNickName != '' && this.teamMemsSeasonYear == "--Select Season Year--")
+    else if(this.teamNickName != '' && this.SeasonYear == "--Select Season Year--")
     {
       //getTeamPlayersByTeamName
       this.service.getTeamPlayersByTeamName()
@@ -184,6 +185,20 @@ export class AppComponent implements OnInit{
         error: (e) => console.error(e)
         });
       }
+
+      else if(this.teamNickName != '' && this.SeasonYear != "--Select Season Year--")
+      {
+        //getTeamPlayersByTeamName
+        this.service.getTeamPlayersByTeamNameAndSeason()
+        .subscribe({
+          next: (data) => {
+            this.teamsMems = data;
+            console.log(data);
+          },
+          error: (e) => console.error(e)
+          });
+        }
+
     }
 
   }
