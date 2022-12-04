@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { Player } from './components/models/player.model';
+import { Team } from './components/models/team.model';
 import { Service } from './components/services/database.service';
 
 
