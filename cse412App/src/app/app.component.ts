@@ -31,6 +31,18 @@ export class AppComponent implements OnInit{
 
   title = '';
 
+  teams?: Team[];
+  currentTeam: Team = {};
+  currentTeamIndex = -1;
+
+  teamsMems?: TeamMems[];
+  currentTeamMems: TeamMems = {};
+  currentTeamMemsIndex = -1;
+
+  //Team text fields
+  teamNickName = '';
+  teamSeasonYear = "--Select Season Year--";
+
   constructor(
     private service: Service
   ){}
@@ -141,6 +153,36 @@ export class AppComponent implements OnInit{
         },
         error: (e) => console.error(e)
       });
+    }
+
+  }
+
+  OnSubmitTeam(): void {
+    if(this.teamNickName == '' && this.teamSeasonYear == "--Select Season Year--")
+    {
+      //getTeams
+      this.service.getTeams()
+      .subscribe({
+        next: (data) => {
+          this.teams = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
+    }
+
+    else if(this.teamMemsNickName != '' && this.teamMemsSeasonYear == "--Select Season Year--")
+    {
+      //getTeamPlayersByTeamName
+      this.service.getTeamPlayersByTeamName()
+      .subscribe({
+        next: (data) => {
+          this.teamsMems = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+        });
+      }
     }
 
   }
