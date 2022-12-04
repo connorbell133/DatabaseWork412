@@ -52,15 +52,15 @@ export class Service {
   return this.http.get<Team[]>(`${baseUrl}/${"teams"}`);
  } 
 
- getTeamPlayersByTeamName(teamNickName: any) : Observable<Team[]> {
+ getTeamPlayersByTeamName(teamNickName: any) : Observable<TeamMems[]> {
   return this.http.get<TeamMems[]>(`${baseUrl}/${"teams"}/${teamNickName}`);
  } 
 
- getTeamPlayersBySeason(teamSeasonYear: any) : Observable<Team[]> {
+ getTeamPlayersBySeason(teamSeasonYear: any) : Observable<TeamMems[]> {
   return this.http.get<TeamMems[]>(`${baseUrl}/${"teams"}/${"season"}/${teamSeasonYear}`);
  }
 
- getTeamPlayersByTeamNameAndSeason(teamNickName: any, teamSeasonYear: any) : Observable<Team[]> {
+ getTeamPlayersByTeamNameAndSeason(teamNickName: any, teamSeasonYear: any) : Observable<TeamMems[]> {
   return this.http.get<TeamMems[]>(`${baseUrl}/${"teams"}/${teamNickName}/${teamSeasonYear}`);
  }
 
