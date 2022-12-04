@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Player } from '../models/player.model';
 
-const baseUrl = 'http://localhost:3000/';
+const baseUrl = 'http://localhost:3000';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,12 @@ export class Service {
   constructor(private http: HttpClient) { }
 
   getPlayers0(): Observable<Player[]> {
-    return this.http.get<Player[]>('${baseUrl}/${"players0"}');
+    console.log('${baseUrl}/${"players0"}')
+    return this.http.get<Player[]>(`${baseUrl}/${"players0"}`);
   }
 
-  getPlayers1(name: any): Observable<Player> {
-    return this.http.get<Player>(`${baseUrl}/${name}`);
+  getPlayers1(name: any): Observable<Player[]> {
+    return this.http.get<Player[]>(`${baseUrl}/${"players1"}/${name}`);
   }
 
   create(data: any): Observable<any> {
