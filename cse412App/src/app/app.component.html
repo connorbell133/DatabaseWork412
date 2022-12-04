@@ -16,11 +16,23 @@
   flex: 50%;
 }
 
-form, h2, h1{
+h2, h1, tr {
   text-align: center;
 }
 .form-group,label {
     padding: 12px;
+}
+
+.input-group {
+  text-align: center;
+}
+
+input {
+  width: 200px;
+}
+
+.input-group-append {
+  padding: 10px;
 }
 
 .container {
@@ -29,14 +41,23 @@ form, h2, h1{
     justify-content: center;
 }
 
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+th, td {
+  background-color: #96D4D4;
+}
+
 </style>
 <div class="container-fluid">
   <h1>Welcome to our CSE 412 Group Project</h1>
   <div class="row">
     <div class="column">
-      <h2>Player Search</h2>
-      <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+      <h1>Player Search</h1>
+      <!--<form>
+        <div>
           <label for="name">Player Name:</label>
           <input type="text" class="form-control" formControlName="name">
         </div>
@@ -54,43 +75,78 @@ form, h2, h1{
         </select>
         
         <div class="form-group">
-          <button class="btn btn-primary" (click)="searchTitle()" type="submit">
+          <button class="btn btn-primary" type="submit">
             Submit Query
           </button> 
         </div>
 
-        <pre>{{playerForm.value.year}}</pre>
-      </form>
-
-      <div class="container p-5">
- 
-        <table class="table table-hover table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Player Name</th>
-              <th scope="col">Season</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of players">
-              
-              <td>{{user.nflid}}</td>
-              <td>{{user.displayname}}</td>
-              <td>{{user.season}}</td>
-            </tr>
-          
-          </tbody>
-        </table>
-        
+      
+      </form>-->
+      
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search player by full name"
+          [(ngModel)]="playername"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            (click)="retrievePlayers1()"
+          >
+            Search
+          </button>
         </div>
+      </div>
+
+      
+        <h2>Tutorials List</h2>
+        
+
+        <div class="container p-7">
+ 
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Player Name</th>
+                <th scope="col">Season</th>
+                <th scope="col">Postion</th>
+                <th scope="col">Hometown</th>
+                <th scope="col">College Name</th>
+                <th scope="col">Jersey Number</th>
+                <th scope="col">Height</th>
+                <th scope="col">Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let player of players; let i = index">
+                
+                <td>{{player.displayname}}</td>
+                <td>{{player.fullname}}</td>
+                <td>{{player.season}}</td>
+                <td>{{player.position}}</td>
+                <td>{{player.hometown}}</td>
+                <td>{{player.collegename}}</td>
+                <td>{{player.jerseynumber}}</td>
+                <td>{{player.height}}</td>
+                <td>{{player.weight}}</td>
+              </tr>
+            
+            </tbody>
+          </table>
+          </div>
+
+      
 
     </div>
 
     <div class="column">
-      <h2>Team Search</h2>
-      <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
+      <h1>Team Search</h1>
+      <!--
+      <form >
+        <div>
           <label for="name">Team Name</label>
           <input type="text" class="form-control" formControlName="name">
           <div>
@@ -111,8 +167,8 @@ form, h2, h1{
           </button> 
         </div>
 
-        <pre>{{teamForm.value.year}}</pre>
-      </form>
+
+      </form>-->
     </div>
 
   </div>
