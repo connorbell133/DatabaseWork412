@@ -37,6 +37,10 @@ export class AppComponent {
     college: '',
     year: ''
   });
+  teamForm = this.formBuilder.group({
+    name: '',
+    year: ''
+  });
 
   onSubmit(): void {
     // Process checkout data here

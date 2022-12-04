@@ -88,16 +88,14 @@ form, h2, h1{
     </div>
 
     <div class="column">
-      <h2>Player Search</h2>
-      <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+      <h2>Team Search</h2>
+      <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="name">Player Name</label>
+          <label for="name">Team Name</label>
           <input type="text" class="form-control" formControlName="name">
-        </div>
-
-        <div class="form-group">
-          <label for="college">College Name</label>
-          <input type="text" class="form-control" formControlName="college">
+          <div>
+            <strong> ex) Ravens, Falcons, etc...</strong>
+          </div>
         </div>
 
         <select class="form-group" formControlName="year">
@@ -113,7 +111,7 @@ form, h2, h1{
           </button> 
         </div>
 
-        <pre>{{playerForm.value.year}}</pre>
+        <pre>{{teamForm.value.year}}</pre>
       </form>
     </div>
 
