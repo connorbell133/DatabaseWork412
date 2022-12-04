@@ -122,7 +122,7 @@ const getPlayers123 = (request, response) => {
 // getTeams(0), 0 paramaters filled out
 //  http://localhost:3000/teams
 const getTeams = (request, response) => {
-    pool.query('SELECT teamid, abbr, citystate, nick FROM teams', (error, results) => {
+    pool.query('SELECT abbr, citystate, nick FROM teams', (error, results) => {
     if (error) {
        throw error
      }
