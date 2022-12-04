@@ -27,7 +27,7 @@ const getPlayers0 = (request, response) => {
 const getPlayers1 = (request, response) => {
     const name = request.params.fullname
 
-    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.displayname = ($1) ', [name],  (error, results) => {
+    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.displayname = ($1) ORDER BY players.lastname, players.season ASC', [name],  (error, results) => {
      if (error) {
        throw error
      }
@@ -40,7 +40,7 @@ const getPlayers1 = (request, response) => {
 const getPlayers2 = (request, response) => {
     const name = request.params.collegename
 
-    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND colleges.collegename = $1', [name],  (error, results) => {
+    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND colleges.collegename = $1 ORDER BY players.lastname, players.season ASC', [name],  (error, results) => {
      if (error) {
        throw error
      }
@@ -53,7 +53,7 @@ const getPlayers2 = (request, response) => {
 const getPlayers3 = (request, response) => {
     const seasonyear = request.params.seasonyear
 
-    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.season = ($1) ', [seasonyear],  (error, results) => {
+    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.season = ($1) ORDER BY players.lastname, players.season ASC', [seasonyear],  (error, results) => {
      if (error) {
        throw error
      }
@@ -67,7 +67,7 @@ const getPlayers12 = (request, response) => {
 
     const {playername, collegename} = request.params;
 
-    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND colleges.collegename=($2) AND players.displayname=($1)', [collegename, playername],  (error, results) => {
+    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND colleges.collegename=($2) AND players.displayname=($1) ORDER BY players.lastname, players.season ASC', [collegename, playername],  (error, results) => {
      if (error) {
        throw error
      }
@@ -81,7 +81,7 @@ const getPlayers13 = (request, response) => {
 
     const {playername, seasonyear} = request.params;
 
-    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.season=($2) AND players.displayname=($1)', [seasonyear, playername],  (error, results) => {
+    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.season=($2) AND players.displayname=($1) ORDER BY players.lastname, players.season ASC', [seasonyear, playername],  (error, results) => {
      if (error) {
        throw error
      }
@@ -95,7 +95,7 @@ const getPlayers23 = (request, response) => {
 
     const {collegename, seasonyear} = request.params;
 
-    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.season=($2) AND colleges.collegename=($1)', [seasonyear, collegename],  (error, results) => {
+    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.season=($2) AND colleges.collegename=($1) ORDER BY players.lastname, players.season ASC', [seasonyear, collegename],  (error, results) => {
      if (error) {
        throw error
      }
@@ -109,7 +109,7 @@ const getPlayers123 = (request, response) => {
 
     const {collegename, seasonyear, fullname} = request.params;
 
-    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.season=($1) AND colleges.collegename=($2) AND players.displayname=($3)', [seasonyear, collegename, fullname],  (error, results) => {
+    pool.query('SELECT players.displayname, teams.fullName, players.season, players.position, players.hometown, colleges.collegename, players.jerseynumber, players.height, players.weight FROM players, colleges, teams WHERE players.collegeid = colleges.collegeid AND players.teamid = teams.teamid AND players.season = teams.season AND players.season=($1) AND colleges.collegename=($2) AND players.displayname=($3) ORDER BY players.lastname, players.season ASC', [seasonyear, collegename, fullname],  (error, results) => {
      if (error) {
        throw error
      }
@@ -134,7 +134,7 @@ const getTeams = (request, response) => {
   //  http://localhost:3000/teams/Ravens
   const getTeamPlayersByTeamName = (request, response) => {
     const name = request.params.teamname
-    pool.query('SELECT teams.cityState, teams.nick, players.displayname, teams.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND teams.nick = $1', [name],  (error, results) => {
+    pool.query('SELECT teams.cityState, teams.nick, players.displayname, teams.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND teams.nick = $1 ', [name],  (error, results) => {
      if (error) {
        throw error
      }
@@ -146,7 +146,7 @@ const getTeams = (request, response) => {
    //  http://localhost:3000/teams/season/2001
    const getTeamPlayersBySeason = (request, response) => {
     const season = parseInt(request.params.seasonnum)
-    pool.query('SELECT teams.fullName, players.displayname, players.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND players.season = teams.season AND teams.season = $1 AND players.season = $1', [season],  (error, results) => {
+    pool.query('SELECT teams.fullName, players.displayname, players.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND players.season = teams.season AND teams.season = $1 AND players.season = $1 ORDER BY players.lastname, players.season ASC', [season],  (error, results) => {
      if (error) {
        throw error
      }
@@ -159,7 +159,7 @@ const getTeams = (request, response) => {
   const getTeamPlayersByTeamNameAndSeason = (request, response) => {
     const name = request.params.teamname
     const season = parseInt(request.params.seasonnum)
-    pool.query('SELECT teams.fullName, players.displayname, players.position, players.hometown, players.jerseynumber, players.height, players.weight, players.season FROM players, teams WHERE players.season = teams.season AND teams.nick = $1 AND teams.season = $2 AND players.season = $2', [name, season],  (error, results) => {
+    pool.query('SELECT teams.fullName, players.displayname, players.position, players.hometown, players.jerseynumber, players.height, players.weight, players.season FROM players, teams WHERE players.season = teams.season AND teams.nick = $1 AND teams.season = $2 AND players.season = $2 ORDER BY players.lastname, players.season ASC', [name, season],  (error, results) => {
       if (error) {
         throw error
       }
