@@ -1,13 +1,4 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <style>
-
 .row {
   display: flex;
 }
@@ -25,6 +16,7 @@ h2, h1, tr {
 
 .input-group {
   text-align: center;
+  position: flex;
 }
 
 input {
@@ -56,87 +48,82 @@ th, td {
   <div class="row">
     <div class="column">
       <h1>Player Search</h1>
-      <!--<form>
-        <div>
-          <label for="name">Player Name:</label>
-          <input type="text" class="form-control" formControlName="name">
-        </div>
-
-        <div class="form-group">
-          <label for="college">College Name:</label>
-          <input type="text" class="form-control" formControlName="college">
-        </div>
-
-        <select formControlName="year">
-          <option>--Select Year--</option>
-          <option *ngFor="let year of years" [ngValue]="year">
-            {{ year }}
-        </option>
-        </select>
-        
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">
-            Submit Query
-          </button> 
-        </div>
-
-      
-      </form>-->
-      
+     
       <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Search player by full name"
-          [(ngModel)]="playername"
-        />
+
         <div class="input-group-append">
-          <button
-            class="btn btn-outline-secondary"
-            (click)="retrievePlayers1()"
-          >
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search player by full name"
+            [(ngModel)]="playername"
+          />
+        </div>
+
+        <div class="input-group-append">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search player by college name"
+            [(ngModel)]="collegename"
+          />
+        </div>
+
+        <div class="input-group-append">
+          <select #year (change)="onSelected(year.value)">
+            <option default>--Select Season Year--</option>
+            <option *ngFor="let year of years" [ngValue]="seasonyear">
+              {{ year }}
+          </option>
+          </select>
+        </div>
+
+
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="onSubmitPlayer()">
             Search
           </button>
         </div>
-      </div>
+
+      </div> <!--End of input-group-->
 
       
-        <h2>Tutorials List</h2>
+      <h2>Player List</h2>
         
 
-        <div class="container p-7">
- 
-          <table class="table table-hover table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Player Name</th>
-                <th scope="col">Season</th>
-                <th scope="col">Postion</th>
-                <th scope="col">Hometown</th>
-                <th scope="col">College Name</th>
-                <th scope="col">Jersey Number</th>
-                <th scope="col">Height</th>
-                <th scope="col">Weight</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let player of players; let i = index">
-                
-                <td>{{player.displayname}}</td>
-                <td>{{player.fullname}}</td>
-                <td>{{player.season}}</td>
-                <td>{{player.position}}</td>
-                <td>{{player.hometown}}</td>
-                <td>{{player.collegename}}</td>
-                <td>{{player.jerseynumber}}</td>
-                <td>{{player.height}}</td>
-                <td>{{player.weight}}</td>
-              </tr>
-            
-            </tbody>
-          </table>
-          </div>
+      <div class="container p-7">
+
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Player Name</th>
+              <th scope="col">Season</th>
+              <th scope="col">Postion</th>
+              <th scope="col">Hometown</th>
+              <th scope="col">College Name</th>
+              <th scope="col">Jersey Number</th>
+              <th scope="col">Height</th>
+              <th scope="col">Weight</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let player of players; let i = index">
+              
+              <td>{{player.displayname}}</td>
+              <td>{{player.fullname}}</td>
+              <td>{{player.season}}</td>
+              <td>{{player.position}}</td>
+              <td>{{player.hometown}}</td>
+              <td>{{player.collegename}}</td>
+              <td>{{player.jerseynumber}}</td>
+              <td>{{player.height}}</td>
+              <td>{{player.weight}}</td>
+            </tr>
+          
+          </tbody>
+        </table>
+        </div>
 
       
 

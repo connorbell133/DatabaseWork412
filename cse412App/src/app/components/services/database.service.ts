@@ -12,6 +12,7 @@ export class Service {
 
   constructor(private http: HttpClient) { }
 
+  //PLAYER QUERIES
   getPlayers0(): Observable<Player[]> {
     console.log('${baseUrl}/${"players0"}')
     return this.http.get<Player[]>(`${baseUrl}/${"players0"}`);
@@ -21,21 +22,30 @@ export class Service {
     return this.http.get<Player[]>(`${baseUrl}/${"players1"}/${name}`);
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+  getPlayers2(collegename: any): Observable<Player[]> {
+    return this.http.get<Player[]>(`${baseUrl}/${"players2"}/${collegename}`);
   }
 
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+  getPlayers3(seasonyear: any): Observable<Player[]> {
+    return this.http.get<Player[]>(`${baseUrl}/${"players3"}/${seasonyear}`);
   }
 
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
+  getPlayers12(name: any, collegename: any): Observable<Player[]> {
+    return this.http.get<Player[]>(`${baseUrl}/${"players12"}/${collegename}/${name}`);
   }
 
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
+  getPlayers13(name: any, seasonyear: any): Observable<Player[]> {
+    return this.http.get<Player[]>(`${baseUrl}/${"players13"}/${seasonyear}/${name}`);
   }
 
+  getPlayers23(collegename: any, seasonyear: any): Observable<Player[]> {
+    return this.http.get<Player[]>(`${baseUrl}/${"players23"}/${seasonyear}/${collegename}`);
+  }
+  
+  getPlayers123(name: any, collegename: any, seasonyear: any): Observable<Player[]> {
+    return this.http.get<Player[]>(`${baseUrl}/${"players123"}/${collegename}/${seasonyear}/${name}`);
+  }
+
+  //TEAM QUERIES
   
 }
