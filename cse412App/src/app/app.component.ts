@@ -173,7 +173,7 @@ export class AppComponent implements OnInit{
       });
     }
 
-    else if(this.teamNickName != '' && this.SeasonYear == "--Select Season Year--")
+    else if(this.teamNickName != '' && this.teamSeasonYear == "--Select Season Year--")
     {
       //getTeamPlayersByTeamName
       this.service.getTeamPlayersByTeamName()
@@ -186,7 +186,7 @@ export class AppComponent implements OnInit{
         });
       }
 
-      else if(this.teamNickName != '' && this.SeasonYear != "--Select Season Year--")
+      else if(this.teamNickName != '' && this.teamSeasonYear != "--Select Season Year--")
       {
         //getTeamPlayersByTeamName
         this.service.getTeamPlayersByTeamNameAndSeason()
