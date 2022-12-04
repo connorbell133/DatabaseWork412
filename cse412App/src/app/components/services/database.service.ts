@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Player } from '../models/player.model';
 import { Team } from '../models/team.model';
-import { TeamMems } from '../model/teammems.model';
+import { TeamMems } from '../models/teammems.model';
 const baseUrl = 'http://localhost:3000';
 
 @Injectable({
