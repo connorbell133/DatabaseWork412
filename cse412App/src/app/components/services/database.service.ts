@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Player } from '../models/player.model';
-
+import { Team } from '../models/team.model';
+import { TeamMems } from '../model/teammems.model';
 const baseUrl = 'http://localhost:3000';
 
 @Injectable({
@@ -47,5 +48,21 @@ export class Service {
   }
 
   //TEAM QUERIES
-  
+ getTeams() : Observable<Team[]> {
+  return this.http.get<Team[]>(`${baseUrl}/${"teams"}`);
+ } 
+
+ getTeamPlayersByTeamName(teamNickName: any) : Observable<Team[]> {
+  return this.http.get<TeamMems[]>(`${baseUrl}/${"teams"}/${teamNickName}`);
+ } 
+
+ getTeamPlayersBySeason(teamSeasonYear: any) : Observable<Team[]> {
+  return this.http.get<TeamMems[]>(`${baseUrl}/${"teams"}/${"season"}/${teamSeasonYear}`);
+ }
+
+ getTeamPlayersByTeamNameAndSeason(teamNickName: any, teamSeasonYear: any) : Observable<Team[]> {
+  return this.http.get<TeamMems[]>(`${baseUrl}/${"teams"}/${teamNickName}/${teamSeasonYear}`);
+ }
+
+
 }
