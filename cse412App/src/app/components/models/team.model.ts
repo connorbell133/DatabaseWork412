@@ -5,10 +5,8 @@ export class Team {
   }
   
   /*
-    "season": 2011, 
     "abbr" : BAL,
     "cityState" : Baltimore,
-    "fullName" : Baltimore Ravens,
     "nick" : Ravens
   
   */
