@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Player } from '../models/player.model';
-import { Team } from '../models/team.model';
 import { TeamMems } from '../models/teammems.model';
 const baseUrl = 'http://localhost:3000';
 
@@ -48,10 +47,6 @@ export class Service {
   }
 
   //TEAM QUERIES
- getTeams() : Observable<Team[]> {
-  return this.http.get<Team[]>(`${baseUrl}/${"teams"}`);
- } 
-
  getTeamPlayersByTeamName(teamNickName: any) : Observable<TeamMems[]> {
   return this.http.get<TeamMems[]>(`${baseUrl}/${"teams"}/${teamNickName}`);
  } 

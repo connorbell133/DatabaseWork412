@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { Player } from './components/models/player.model';
-import { Team } from './components/models/team.model';
 import { TeamMems } from './components/models/teammems.model';
 import { Service } from './components/services/database.service';
 
@@ -32,9 +31,6 @@ export class AppComponent implements OnInit{
 
   title = '';
 
-  teams?: Team[];
-  currentTeam: Team = {};
-  currentTeamIndex = -1;
 
   teamsMems?: TeamMems[];
   currentTeamMems: TeamMems = {};
@@ -168,21 +164,8 @@ export class AppComponent implements OnInit{
 
   OnSubmitTeam(): void {
     console.log(this.teamSeasonYear);
-
-    if(this.teamNickName == '--Select Team Name--' && this.teamSeasonYear == "--Select Season Year--")
-    {
-      //getTeams
-      this.service.getTeams()
-      .subscribe({
-        next: (data) => {
-          this.teams = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
-    }
-
-    else if(this.teamNickName != '--Select Team Name--' && this.teamSeasonYear == "--Select Season Year--")
+    console.log(this.teamNickName);
+    if(this.teamNickName != '--Select Team Name--' && this.teamSeasonYear == "--Select Season Year--")
     {
       //getTeamPlayersByTeamName
       this.service.getTeamPlayersByTeamName(this.teamNickName)
@@ -228,6 +211,6 @@ export class AppComponent implements OnInit{
   //SELECT
   years = ['1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
   
-  teamList = ['Cardinals']
+  teamList = ['49ers', 'Bears', 'Bengals', 'Bills', 'Broncos', 'Browns', 'Buccaneers', 'Cardinals', 'Chargers(Los Angeles)', 'Chargers(San Diego)', 'Chiefs', 'Colts', 'Cowboys', 'Dolphins', 'Eagles', 'Falcons', 'Giants', 'Jaguars', 'Jets', 'Lions', 'Packers', 'Panthers', 'Patriots', 'Raiders', 'Rams(Los Angeles)', 'Rams(St.Louis)', 'Ravens', 'Redskins', 'Saints', 'Seahawks', 'Steelers', 'Texans', 'Titnas', 'Vikings']
 
 }
