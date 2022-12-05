@@ -1,6 +1,6 @@
 export class Team {
     abbr?: any;
-    cityState: any;
+    cityState?: any;
     nick?: any;
   }
   

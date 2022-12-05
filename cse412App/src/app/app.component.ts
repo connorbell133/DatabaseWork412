@@ -41,7 +41,7 @@ export class AppComponent implements OnInit{
   currentTeamMemsIndex = -1;
 
   //Team text fields
-  teamNickName = '';
+  teamNickName = "--Select Team Name--";
   teamSeasonYear = "--Select Season Year--";
 
 
@@ -57,6 +57,13 @@ export class AppComponent implements OnInit{
 		this.seasonyear = value;
 	}
 
+  onSelectedYear(value:string): void {
+		this.teamSeasonYear = value;
+	}
+
+  onSelectedTeam(value:string): void {
+		this.teamNickName = value;
+	}
 
   onSubmitPlayer(): void {
 
@@ -160,7 +167,9 @@ export class AppComponent implements OnInit{
   }
 
   OnSubmitTeam(): void {
-    if(this.teamNickName == '' && this.teamSeasonYear == "--Select Season Year--")
+    console.log(this.teamSeasonYear);
+
+    if(this.teamNickName == '--Select Team Name--' && this.teamSeasonYear == "--Select Season Year--")
     {
       //getTeams
       this.service.getTeams()
@@ -173,7 +182,7 @@ export class AppComponent implements OnInit{
       });
     }
 
-    else if(this.teamNickName != '' && this.teamSeasonYear == "--Select Season Year--")
+    else if(this.teamNickName != '--Select Team Name--' && this.teamSeasonYear == "--Select Season Year--")
     {
       //getTeamPlayersByTeamName
       this.service.getTeamPlayersByTeamName(this.teamNickName)
@@ -186,8 +195,9 @@ export class AppComponent implements OnInit{
         });
       }
 
-      else if(this.teamNickName == '' && this.teamSeasonYear != "--Select Season Year--")
+      else if(this.teamNickName == '--Select Team Name--' && this.teamSeasonYear != "--Select Season Year--")
       {
+        
         //getTeamPlayersByTeamName
         this.service.getTeamPlayersBySeason(this.teamSeasonYear)
         .subscribe({
@@ -199,7 +209,7 @@ export class AppComponent implements OnInit{
           });
         }
 
-      else if(this.teamNickName != '' && this.teamSeasonYear != "--Select Season Year--")
+      else if(this.teamNickName != '--Select Team Name--' && this.teamSeasonYear != "--Select Season Year--")
       {
         //getTeamPlayersByTeamName
         this.service.getTeamPlayersByTeamNameAndSeason(this.teamNickName, this.teamSeasonYear)
@@ -218,6 +228,7 @@ export class AppComponent implements OnInit{
 
   //SELECT
   years = ['1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-
+  
+  teamList = ['Cardinals']
 
 }

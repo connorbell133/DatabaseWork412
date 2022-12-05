@@ -167,8 +167,8 @@ btn {
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
-              <th class = column2 scope="col">ID</th>
               <th class = column2 scope="col">Player Name</th>
+              <th class = column2 scope="col">Team Name</th>
               <th class = column2 scope="col">Season</th>
               <th class = column2 scope="col">Postion</th>
               <th class = column2 scope="col">Hometown</th>
@@ -194,7 +194,7 @@ btn {
 
           </tbody>
         </table>
-        </div>
+      </div>
 
 
 
@@ -203,40 +203,98 @@ btn {
     <div class="column">
       <h1>Team Search</h1>
       
-      <div class="input-group-append">
-        <div class = option-group>
-          <h3 class="option">Team name: </h3>
-          <div>
-            Ex) Ravens, Falcons, etc...
+      <div class="input-group">
+        <div class="input-group-append">
+          <div class = option-group>
+            <h3 class="option">Team name: </h3>
+            <div>
+              Ex) Ravens, Falcons, etc...
+            </div>
+          </div>
+          <div class = "answer-group">
+            <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search Team by nick-name"
+                        [(ngModel)]="teamNickName"
+                      />
           </div>
         </div>
-        <div class = "answer-group">
-          <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Search Team by nick-name"
-                      [(ngModel)]="teamNickName"
-                    />
+
+        <div class="input-group-append">
+          <div class = "option-group">
+            <h3 class="option">Team Name:</h3>
+            <div>
+              Ex) Ravens, Falcons, etc...
+            </div>
+          </div>
+          <div class = "answer-group">
+            <select class = "year-select" #team (change)="onSelectedTeam(team.value)">
+                  <option default>--Select Team Name--</option>
+                  <option *ngFor="let team of teamList" [ngValue]="teamNickName">
+                    {{ team }}
+                </option>
+            </select>
+          </div>
         </div>
+
 
         <div class="input-group-append">
           <div class = "option-group">
             <h3 class="option">Season:</h3>
           </div>
           <div class = "answer-group">
-            <select class = "year-select" #year (change)="onSelected(year.value)">
+            <select class = "year-select" #teamyear (change)="onSelectedYear(teamyear.value)">
                   <option default>--Select Season Year--</option>
-                  <option *ngFor="let year of years" [ngValue]="seasonyear">
+                  <option *ngFor="let year of years" [ngValue]="teamSeasonYear">
                     {{ year }}
                 </option>
             </select>
           </div>
+        </div>
 
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" (click)="OnSubmitTeam()">
             Search
           </button>
         </div>
+
+      </div><!--End of input group-->
+
+      <h2>Team List</h2>
+
+
+      <div class="answer-container">
+
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th class = column2 scope="col">Player Name</th>
+              <th class = column2 scope="col">Team Name</th>
+              <th class = column2 scope="col">Season</th>
+              <th class = column2 scope="col">Postion</th>
+              <th class = column2 scope="col">Hometown</th>
+              <th class = column2 scope="col">Jersey Number</th>
+              <th class = column2 scope="col">Height</th>
+              <th class = column2 scope="col">Weight</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let team of teamsMems; let i = index">
+
+              <td>{{team.displayname}}</td>
+              <td>{{team.fullname}}</td>
+              <td>{{team.season}}</td>
+              <td>{{team.position}}</td>
+              <td>{{team.hometown}}</td>
+              <td>{{team.jerseynumber}}</td>
+              <td>{{team.height}}</td>
+              <td>{{team.weight}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
 
     </div>
 

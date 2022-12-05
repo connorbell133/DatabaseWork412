@@ -1,5 +1,5 @@
 export class TeamMems {
-    fullName?: any;
+    fullname?: any;
     displayname?: any;
     season?: any;
     position?: any;
