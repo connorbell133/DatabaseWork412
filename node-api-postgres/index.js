@@ -29,7 +29,7 @@ app.get('/players23/:collegename/:seasonyear', db.getPlayers23)
 app.get('/players123/:collegename/:seasonyear/:fullname', db.getPlayers123)
 
 
-app.get('/teams', db.getTeams)
+//app.get('/teams', db.getTeams)
 app.get('/teams/:teamname', db.getTeamPlayersByTeamName)
 app.get('/teams/season/:seasonnum', db.getTeamPlayersBySeason)
 app.get('/teams/:teamname/:seasonnum', db.getTeamPlayersByTeamNameAndSeason)

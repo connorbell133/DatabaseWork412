@@ -2,8 +2,8 @@ const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
-  database: 'NFL',
-  password: '8014',
+  database: 'postgres',
+  password: 'Raptor920',
   port: 5432,
 })
 
@@ -122,19 +122,19 @@ const getPlayers123 = (request, response) => {
 // getTeams(0), 0 paramaters filled out
 //  http://localhost:3000/teams
 //const getTeams = (request, response) => {
-//    pool.query('SELECT abbr, citystate, nick FROM teams', (error, results) => {
- //   if (error) {
- //      throw error
- //    }
- //    response.status(200).json(results.rows)
- //  })
- // }
+  //  pool.query('SELECT DISTINCT abbr, citystate, nick FROM teams ORDER BY nick', (error, results) => {
+  //  if (error) {
+  //     throw error
+  //   }
+   //  response.status(200).json(results.rows)
+  // })
+  //}
   
   // getTeams(1), 1st paramter (team name) filled out
   //  http://localhost:3000/teams/Ravens
   const getTeamPlayersByTeamName = (request, response) => {
     const name = request.params.teamname
-    pool.query('SELECT teams.fullName, players.displayname, players.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND teams.season = players.season AND teams.nick = $1 ', [name],  (error, results) => {
+    pool.query('SELECT teams.fullName, players.displayname, players.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND teams.season = players.season ANDteams.nick = $1 ', [name],  (error, results) => {
      if (error) {
        throw error
      }
