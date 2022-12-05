@@ -134,7 +134,7 @@ const getPlayers123 = (request, response) => {
   //  http://localhost:3000/teams/Ravens
   const getTeamPlayersByTeamName = (request, response) => {
     const name = request.params.teamname
-    pool.query('SELECT teams.fullName, players.displayname, players.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND teams.season = players.season AND teams.nick = $1 ', [name],  (error, results) => {
+    pool.query('SELECT teams.fullName, players.displayname, players.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND teams.season = players.season AND teams.nick = $1 ORDER BY players.season', [name],  (error, results) => {
      if (error) {
        throw error
      }
