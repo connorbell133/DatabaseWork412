@@ -197,8 +197,7 @@ export class AppComponent implements OnInit{
 
       else if(this.teamNickName == '--Select Team Name--' && this.teamSeasonYear != "--Select Season Year--")
       {
-        
-        //getTeamPlayersByTeamName
+        //getTeamPlayersBySeason
         this.service.getTeamPlayersBySeason(this.teamSeasonYear)
         .subscribe({
           next: (data) => {
@@ -211,7 +210,7 @@ export class AppComponent implements OnInit{
 
       else if(this.teamNickName != '--Select Team Name--' && this.teamSeasonYear != "--Select Season Year--")
       {
-        //getTeamPlayersByTeamName
+        //getTeamPlayersByTeamNameAndSeason
         this.service.getTeamPlayersByTeamNameAndSeason(this.teamNickName, this.teamSeasonYear)
         .subscribe({
           next: (data) => {
