@@ -121,14 +121,14 @@ const getPlayers123 = (request, response) => {
 //TEAMS QUERIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // getTeams(0), 0 paramaters filled out
 //  http://localhost:3000/teams
-const getTeams = (request, response) => {
-    pool.query('SELECT abbr, citystate, nick FROM teams', (error, results) => {
-    if (error) {
-       throw error
-     }
-     response.status(200).json(results.rows)
-   })
-  }
+//const getTeams = (request, response) => {
+//    pool.query('SELECT abbr, citystate, nick FROM teams', (error, results) => {
+ //   if (error) {
+ //      throw error
+ //    }
+ //    response.status(200).json(results.rows)
+ //  })
+ // }
   
   // getTeams(1), 1st paramter (team name) filled out
   //  http://localhost:3000/teams/Ravens
@@ -159,7 +159,7 @@ const getTeams = (request, response) => {
   const getTeamPlayersByTeamNameAndSeason = (request, response) => {
     const name = request.params.teamname
     const season = parseInt(request.params.seasonnum)
-    pool.query('SELECT teams.fullName, players.displayname, players.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.season = teams.season AND teams.nick = $1 AND teams.season = $2 AND players.season = $2 ORDER BY players.lastname, players.season ASC', [name, season],  (error, results) => {
+    pool.query('SELECT teams.fullName, players.displayname, players.season, players.position, players.hometown, players.jerseynumber, players.height, players.weight FROM players, teams WHERE players.teamid = teams.teamid AND players.season = teams.season AND teams.nick = $1 AND teams.season = $2 AND players.season = $2 ORDER BY players.lastname, players.season ASC', [name, season],  (error, results) => {
       if (error) {
         throw error
       }
@@ -178,7 +178,7 @@ module.exports = {
   getPlayers13,
   getPlayers23,
   getPlayers123,
-  getTeams,
+ // getTeams,
   getTeamPlayersByTeamName,
   getTeamPlayersBySeason,
   getTeamPlayersByTeamNameAndSeason,

@@ -205,23 +205,6 @@ btn {
       
       <div class="input-group">
         <div class="input-group-append">
-          <div class = option-group>
-            <h3 class="option">Team name: </h3>
-            <div>
-              Ex) Ravens, Falcons, etc...
-            </div>
-          </div>
-          <div class = "answer-group">
-            <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Search Team by nick-name"
-                        [(ngModel)]="teamNickName"
-                      />
-          </div>
-        </div>
-
-        <div class="input-group-append">
           <div class = "option-group">
             <h3 class="option">Team Name:</h3>
             <div>
@@ -283,7 +266,7 @@ btn {
             <tr *ngFor="let team of teamsMems; let i = index">
 
               <td>{{team.displayname}}</td>
-              <td>{{team.fullname}}</td>
+              <td>{{team.fullName}}</td>
               <td>{{team.season}}</td>
               <td>{{team.position}}</td>
               <td>{{team.hometown}}</td>
